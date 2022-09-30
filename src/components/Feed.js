@@ -7,7 +7,9 @@ const Feed = () => {
   useEffect(() => {
     const fetchingData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/people");
+        const response = await axios.get(
+          "https://strange-fox-shoulder-pads.cyclic.app/api/people"
+        );
         setData(response.data);
       } catch (error) {
         console.log(error);

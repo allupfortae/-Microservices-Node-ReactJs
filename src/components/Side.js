@@ -17,7 +17,7 @@ const Side = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/people",
+        "https://strange-fox-shoulder-pads.cyclic.app/api/people",
         inputs
       );
       if (response) {
