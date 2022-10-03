@@ -2,18 +2,19 @@ import React, { useState } from "react";
 const axios = require("axios").default;
 
 const Side = () => {
-  // const [created, setCreated] = useState("Sucessfully added to feed!!");
-  const [inputs, setInpus] = useState({
+  const [inputs, setInputs] = useState({
     name: "",
     job: "",
     descriptions: "",
     twitter: "",
     linkedin: "",
   });
+
   const handleChanges = (e) => {
-    setInpus((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const sumbitBtn = async (e) => {
+
+  const handleSumbitBtn = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
@@ -23,6 +24,7 @@ const Side = () => {
       if (response) {
         return response.status(200).json({ msg: "sucessfully added" });
       }
+      handleChanges();
     } catch (err) {
       console.log(err);
     }
@@ -34,12 +36,13 @@ const Side = () => {
         <h1 className="text-center text-3xl mt-5">Create a feed</h1>
         <form
           type="submit"
-          onSubmit={sumbitBtn}
+          onSubmit={handleSumbitBtn}
           className="flex flex-col items-center gap-5 justify-center mt-10 bg-[#202020] w-[380px] p-20  pt-12 rounded-[20px]"
         >
           <input
             type="text"
             name="name"
+            value={inputs.name}
             placeholder="Username or Name"
             className="px-2 py-2 rounded-[6px] w-[240px] bg-[black]"
             onChange={handleChanges}
@@ -47,6 +50,7 @@ const Side = () => {
           <input
             type="text"
             name="job"
+            value={inputs.job}
             placeholder="Current Job"
             className="px-2 py-2 rounded-[6px] w-[240px] bg-[black]"
             onChange={handleChanges}
@@ -54,6 +58,7 @@ const Side = () => {
           <textarea
             type="text"
             name="descriptions"
+            value={inputs.descriptions}
             placeholder="Descriptions "
             className=" bg-[black] px-2 py-2 w-[240px] h-[200px]"
             onChange={handleChanges}
@@ -61,6 +66,7 @@ const Side = () => {
           <input
             type="text"
             name="twitter"
+            value={inputs.twitter}
             placeholder="http://twitter/example.com"
             className="px-2 py-2 rounded-[6px] w-[260px]  bg-[black]"
             onChange={handleChanges}
@@ -68,13 +74,13 @@ const Side = () => {
           <input
             type="text"
             name="linkedin"
+            value={inputs.linkedin}
             placeholder="http://linkedin/in/jon-doe.com"
             className="px-2 py-2 rounded-[6px] w-[260px] bg-[black]"
             onChange={handleChanges}
           />
           <button
             type="submit"
-            onClick={handleChanges}
             className="text-center bg-[black] rounded-[10px] p-2 text-xl
 					"
           >

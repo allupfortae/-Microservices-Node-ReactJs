@@ -10,6 +10,10 @@ const Feed = () => {
         const response = await axios.get(
           "https://strange-fox-shoulder-pads.cyclic.app/api/people"
         );
+        response.data.people.sort((a, b) => {
+          if (a.date < b.date) return 1;
+          return -1;
+        });
         setData(response.data);
       } catch (error) {
         console.log(error);
@@ -17,6 +21,7 @@ const Feed = () => {
     };
     fetchingData();
   }, []);
+
   return (
     <>
       <div className="flex-1">
@@ -34,7 +39,7 @@ const Feed = () => {
                 <p className="mt-3 text-[14.2px]">{peoples.descriptions}</p>
                 <div className="flex items-center justify-between ">
                   <a
-                    href={peoples?.twitterUrl}
+                    href={peoples.twitterUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="cursor-pointer"
@@ -47,7 +52,7 @@ const Feed = () => {
                     </span>
                   </a>
                   <a
-                    href={peoples?.linkedinUrl}
+                    href={peoples.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="cursor-pointer"
