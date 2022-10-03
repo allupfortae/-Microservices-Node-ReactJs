@@ -24,10 +24,10 @@ const Side = () => {
       if (response) {
         return response.status(200).json({ msg: "sucessfully added" });
       }
-      handleChanges();
     } catch (err) {
       console.log(err);
     }
+    handleChanges();
   };
 
   return (
