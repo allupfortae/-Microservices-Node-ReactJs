@@ -31,7 +31,7 @@ const Side = () => {
   };
 
   return (
-    <div className="flex-1 flex items-center flex-col  ">
+    <div className="flex-1 flex items-center flex-col">
       <div className="fixed">
         <h1 className="text-center text-3xl mt-5">Create a feed</h1>
         <form
